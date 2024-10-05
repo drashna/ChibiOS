@@ -52,7 +52,7 @@
 /*===========================================================================*/
 
 #if defined(STM32F413xx) || defined(STM32F412xx) ||                         \
-    defined(STM32F40_41xxx) || defined(__DOXYGEN__)
+    (defined(STM32F40_41xxx) && !defined(STM32F407xx)) || defined(__DOXYGEN__)
 
 /* Flash size register. */
 #define STM32_FLASH_SIZE_REGISTER           0x1FFF7A22
@@ -68,7 +68,7 @@
 #define STM32_FLASH1_SECTORS_TOTAL          16
 #define STM32_FLASH2_SECTORS_TOTAL          12
 
-#elif defined(STM32F401xx) || defined(STM32F411xx) || defined(STM32F446xx) || \
+#elif defined(STM32F401xx) || defined(STM32F411xx) || defined(STM32F446xx) || defined(STM32F407xx) || \
     defined(__DOXYGEN__)
 
 /* Flash size register. */

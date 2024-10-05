@@ -65,8 +65,8 @@ EFlashDriver EFLD1;
 /* Driver local variables and types.                                         */
 /*===========================================================================*/
 
-#if defined(STM32F413xx) || defined(STM32F412xx) ||                         \
-    defined(STM32F40_41xxx) || defined(__DOXYGEN__)
+#if defined(STM32F413xx) || defined(STM32F412xx) || \
+    (defined(STM32F40_41xxx) && !defined(STM32F407xx)) || defined(__DOXYGEN__)
 
 /* Sector table for 1.5M device. */
 static const flash_sector_descriptor_t efl_lld_sect1[STM32_FLASH1_SECTORS_TOTAL] = {
@@ -141,7 +141,7 @@ static const efl_lld_size_t efl_lld_flash_sizes[] = {
        .desc = efl_lld_size2
       }
 };
-#elif defined(STM32F401xx) || defined(STM32F411xx) || defined(STM32F446xx) || \
+#elif defined(STM32F401xx) || defined(STM32F411xx) || defined(STM32F446xx) || defined(STM32F407xx) || \
     defined(__DOXYGEN__)
 
 /* Sector table for 128k device. */
