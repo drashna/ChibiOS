@@ -65,8 +65,8 @@ EFlashDriver EFLD1;
 /* Driver local variables and types.                                         */
 /*===========================================================================*/
 
-#if defined(STM32F413xx) || defined(STM32F412xx) || \
-    (defined(STM32F40_41xxx) && !defined(STM32F407xx)) || defined(__DOXYGEN__)
+#if defined(STM32F413xx) || defined(STM32F412xx) || defined(STM32F40_41xxx) || \
+    defined(__DOXYGEN__)
 
 /* Sector table for 1.5M device. */
 static const flash_sector_descriptor_t efl_lld_sect1[STM32_FLASH1_SECTORS_TOTAL] = {
@@ -141,7 +141,7 @@ static const efl_lld_size_t efl_lld_flash_sizes[] = {
        .desc = efl_lld_size2
       }
 };
-#elif defined(STM32F401xx) || defined(STM32F411xx) || defined(STM32F446xx) || defined(STM32F407xx) || \
+#elif defined(STM32F401xx) || defined(STM32F411xx) || defined(STM32F446xx) || \
     defined(__DOXYGEN__)
 
 /* Sector table for 128k device. */
@@ -257,6 +257,78 @@ static const efl_lld_size_t efl_lld_flash_sizes[] = {
        .desc = efl_lld_size4
       }
 };
+
+#elif defined(STM32F407xx) || defined(__DOXYGEN__)
+
+/* Sector table for 512k device. */
+static const flash_sector_descriptor_t efl_lld_sect1[STM32_FLASH1_SECTORS_TOTAL] = {
+  {         0,                        16384},   /* Sector  0. */
+  { 1 * 16384,                        16384},   /* Sector  1. */
+  { 2 * 16384,                        16384},   /* Sector  2. */
+  { 3 * 16384,                        16384},   /* Sector  3. */
+  { 4 * 16384,                        65536},   /* Sector  4. */
+  { 4 * 16384 + 65536,               131072},   /* Sector  5. */
+  { 4 * 16384 + 65536 +  1 * 131072, 131072},   /* Sector  6. */
+  { 4 * 16384 + 65536 +  2 * 131072, 131072},   /* Sector  7. */
+};
+
+
+/* Sector table for 1M device. */
+static const flash_sector_descriptor_t efl_lld_sect2[STM32_FLASH2_SECTORS_TOTAL] = {
+  {         0,                        16384},   /* Sector  0. */
+  { 1 * 16384,                        16384},   /* Sector  1. */
+  { 2 * 16384,                        16384},   /* Sector  2. */
+  { 3 * 16384,                        16384},   /* Sector  3. */
+  { 4 * 16384,                        65536},   /* Sector  4. */
+  { 4 * 16384 + 65536,               131072},   /* Sector  5. */
+  { 4 * 16384 + 65536 +  1 * 131072, 131072},   /* Sector  6. */
+  { 4 * 16384 + 65536 +  2 * 131072, 131072},   /* Sector  7. */
+  { 4 * 16384 + 65536 +  3 * 131072, 131072},   /* Sector  8. */
+  { 4 * 16384 + 65536 +  4 * 131072, 131072},   /* Sector  9. */
+  { 4 * 16384 + 65536 +  5 * 131072, 131072},   /* Sector 10. */
+  { 4 * 16384 + 65536 +  6 * 131072, 131072}    /* Sector 11. */
+};
+
+/* The descriptors for 512k device. */
+static const flash_descriptor_t efl_lld_size1[STM32_FLASH_NUMBER_OF_BANKS] = {
+      { /* Single bank organisation. */
+       .attributes        = FLASH_ATTR_ERASED_IS_ONE |
+                            FLASH_ATTR_MEMORY_MAPPED,
+       .page_size         = STM32_FLASH_LINE_SIZE,
+       .sectors_count     = STM32_FLASH1_SECTORS_TOTAL,
+       .sectors           = efl_lld_sect1,
+       .sectors_size      = 0,
+       .address           = (uint8_t *)FLASH_BASE,
+       .size              = STM32_FLASH1_SIZE * STM32_FLASH_SIZE_SCALE
+      }
+};
+
+
+/* The descriptors for 1M device. */
+static const flash_descriptor_t efl_lld_size2[STM32_FLASH_NUMBER_OF_BANKS] = {
+      { /* Single bank organisation. */
+       .attributes        = FLASH_ATTR_ERASED_IS_ONE |
+                            FLASH_ATTR_MEMORY_MAPPED,
+       .page_size         = STM32_FLASH_LINE_SIZE,
+       .sectors_count     = STM32_FLASH2_SECTORS_TOTAL,
+       .sectors           = efl_lld_sect2,
+       .sectors_size      = 0,
+       .address           = (uint8_t *)FLASH_BASE,
+       .size              = STM32_FLASH2_SIZE * STM32_FLASH_SIZE_SCALE
+      }
+};
+
+
+/* Table describing possible flash sizes and descriptors for this device. */
+static const efl_lld_size_t efl_lld_flash_sizes[] = {
+      {
+       .desc = efl_lld_size1
+      },
+      {
+       .desc = efl_lld_size2
+      }
+};
+
 #elif defined(STM32F429_439xx) || defined(STM32F427_437xx) || \
       defined(__DOXYGEN__)
 

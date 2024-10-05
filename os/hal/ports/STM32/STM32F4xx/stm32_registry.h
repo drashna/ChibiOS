@@ -58,9 +58,12 @@
 #define STM32F410xx
 #define STM32F4XX
 
-#elif defined(STM32F405xx) || defined(STM32F415xx) ||                       \
-      defined(STM32F407xx) || defined(STM32F417xx)
+#elif defined(STM32F405xx) || defined(STM32F415xx)
 #define STM32F40_41xxx
+#define STM32F4XX
+
+#elif   defined(STM32F407xx) || defined(STM32F417xx)
+#define STM32F407xx
 #define STM32F4XX
 
 #elif defined(STM32F401xC) || defined(STM32F401xE)
@@ -2547,7 +2550,7 @@
 /* STM32F215xx, STM32F207xx, STM32F217xx.                                    */
 /*===========================================================================*/
 
-#if defined(STM32F40_41xxx) || defined(STM32F2XX)
+#if defined(STM32F40_41xxx) || defined(STM32F2XX) || defined(STM32F407xx)
 
 /* Clock tree attributes.*/
 #define STM32_HAS_RCC_PLLSAI                FALSE
