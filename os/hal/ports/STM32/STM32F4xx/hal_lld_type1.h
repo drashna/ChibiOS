@@ -261,7 +261,7 @@
 #define STM32_SPII2S_MAX        42000000
 #endif
 
-#if defined(STM32F407xx)
+#if defined(STM32F405xx) || defined(STM32F407xx)
 #define STM32_SYSCLK_MAX        168000000
 #define STM32_HSECLK_MAX        26000000
 #define STM32_HSECLK_BYP_MAX    50000000
@@ -1108,8 +1108,8 @@
  */
 #if defined(STM32F429_439xx) || defined(STM32F427_437xx) ||                 \
     defined(STM32F40_41xxx)  || defined(STM32F446xx)     ||                 \
-    defined(STM32F469_479xx) || defined(STM32F407xx)     ||                 \
-    defined(__DOXYGEN__)
+    defined(STM32F469_479xx) || defined(STM32F405xx)     ||                 \
+    defined(STM32F407xx)     || defined(__DOXYGEN__)
 #if ((STM32_VDD >= 270) && (STM32_VDD <= 360)) || defined(__DOXYGEN__)
 #define STM32_0WS_THRESHOLD         30000000
 #define STM32_1WS_THRESHOLD         60000000
@@ -1656,7 +1656,7 @@
 #define STM32_OVERDRIVE_REQUIRED    TRUE
 #endif
 
-#elif defined(STM32F40_41xxx) || defined(STM32F407xx)
+#elif defined(STM32F40_41xxx) || defined(STM32F405xx) || defined(STM32F407xx)
 #if STM32_SYSCLK <= 144000000
 #define STM32_VOS                   STM32_VOS_SCALE2
 #else

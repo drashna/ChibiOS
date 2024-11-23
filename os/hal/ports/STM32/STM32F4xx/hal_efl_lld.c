@@ -258,7 +258,7 @@ static const efl_lld_size_t efl_lld_flash_sizes[] = {
       }
 };
 
-#elif defined(STM32F407xx) || defined(__DOXYGEN__)
+#elif defined(STM32F405xx) || defined(STM32F407xx) || defined(__DOXYGEN__)
 
 /* Sector table for 512k device. */
 static const flash_sector_descriptor_t efl_lld_sect1[STM32_FLASH1_SECTORS_TOTAL] = {
